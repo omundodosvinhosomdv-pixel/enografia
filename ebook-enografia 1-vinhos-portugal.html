@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enografia: Os Vinhos de Portugal — eBook Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: #faf9f6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.08);
+        }
+
+        /* CAPA */
+        .cover {
+            background: linear-gradient(135deg, #4a0f1c 0%, #2c0a12 100%);
+            color: #fff;
+            padding: 80px 60px;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(217, 185, 140, 0.1);
+            pointer-events: none;
+        }
+
+        .cover h1 {
+            font-size: 58px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover .subtitle {
+            font-size: 28px;
+            color: #d9b98c;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover .byline {
+            font-size: 16px;
+            color: #e9dccd;
+            margin-top: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: #d9b98c;
+            margin: 30px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CONTEÚDO */
+        .content {
+            padding: 80px 60px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 42px;
+            color: #4a0f1c;
+            margin-bottom: 30px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #d9b98c;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 26px;
+            color: #2c0a12;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .intro-text {
+            font-size: 18px;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #d9b98c;
+            background: #f9f3ea;
+        }
+
+        /* GRID DE REGIÕES */
+        .regions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .region-card {
+            background: #f9f3ea;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #7a1e2e;
+        }
+
+        .region-card h4 {
+            color: #7a1e2e;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .region-card p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        /* DESTAQUE */
+        .highlight {
+            background: #f0e9df;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 1px solid #dcc8b3;
+        }
+
+        .highlight h4 {
+            color: #4a0f1c;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            text-align: justify;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        strong {
+            color: #7a1e2e;
+            font-weight: bold;
+        }
+
+        /* MÓDULOS DO CURSO */
+        .module-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .module-item {
+            background: #f9f3ea;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 6px solid #d9b98c;
+        }
+
+        .module-number {
+            display: inline-block;
+            background: #4a0f1c;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .module-title {
+            display: inline-block;
+            color: #2c0a12;
+            font-size: 18px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+
+        .module-desc {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, #4a0f1c 0%, #2c0a12 100%);
+            color: #fff;
+            padding: 50px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            color: #d9b98c;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            color: #e9dccd;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #d9b98c;
+            color: #2c0a12;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        /* RODAPÉ */
+        .footer {
+            background: #2c0a12;
+            color: #e9dccd;
+            padding: 40px 60px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer strong {
+            color: #d9b98c;
+            font-weight: bold;
+        }
+
+        /* PÁGINA QUEBRA */
+        .page-break {
+            page-break-after: always;
+            margin: 80px 0;
+            border-top: 2px dashed #dcc8b3;
+            padding-top: 60px;
+        }
+
+        /* LISTA COM ÍCONE */
+        .check-list {
+            list-style: none;
+        }
+
+        .check-list li:before {
+            content: '✓ ';
+            color: #7a1e2e;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- CAPA -->
+    <div class="cover">
+        <h1>ENOGRAFIA</h1>
+        <div class="divider"></div>
+        <div class="subtitle">Os Vinhos de Portugal</div>
+        <p style="margin-top: 60px; font-size: 16px; letter-spacing: 1px;">Guia Completo do Master em Enografia dos Vinhos de Portugal</p>
+        <p class="byline" style="margin-top: 40px;">OMDV · Educação Vínica Oficial ®</p>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content">
+
+        <!-- SEÇÃO 1: O QUE É ENOGRAFIA -->
+        <div class="section">
+            <h2>O Que É Enografia?</h2>
+
+            <div class="intro-text">
+                Enografia é a ciência e arte de conhecer os vinhos em profundidade — sua origem, produção, características sensoriais e história. A palavra vem do grego "oenos" (vinho) e "graphia" (descrição/estudo).
+            </div>
+
+            <p>
+                Um enógrafo não é apenas um apaixonado por vinho, mas um profissional que domina o conhecimento técnico, sensorial e comercial do vinho. Ele compreende como o terroir, as castas, o clima e as técnicas de produção se traduzem na taça.
+            </p>
+
+            <p>
+                A enografia vai além da degustação: ela abrange a geografia vitivinícola, a história das regiões produtoras, a microbiologia da fermentação, as técnicas de envelhecimento e a harmonização com a gastronomia.
+            </p>
+
+            <h3>Por Que Estudar Enografia?</h3>
+
+            <ul class="check-list">
+                <li>Desenvolveu uma carreira em hotelaria, gastronomia e sommellerie</li>
+                <li>Aprofundar conhecimento técnico e sensorial sobre vinhos</li>
+                <li>Comunicar com autoridade sobre as características de cada vinho</li>
+                <li>Assessorar clientes com recomendações estratégicas</li>
+                <li>Construir uma carta de vinhos coerente e rentável</li>
+                <li>Participar do mercado profissional de vinho com credibilidade</li>
+            </ul>
+        </div>
+
+        <!-- SEÇÃO 2: OS FUNDAMENTOS -->
+        <div class="section">
+            <h2>Os Fundamentos da Enografia</h2>
+
+            <h3>1. Terroir</h3>
+            <p>
+                O terroir é o conjunto de fatores naturais que definem um vinho: <strong>clima, solo, topografia e até a vegetação local</strong>. Cada região tem um terroir único, e é essa singularidade que cria a identidade de um vinho.
+            </p>
+            <p>
+                Em Portugal, você encontrará solos graníticos no Douro, argilosos na Bairrada e arenosos no Alentejo — cada um imprimindo características distintas ao fruto.
+            </p>
+
+            <h3>2. Castas (Variedades de Uva)</h3>
+            <p>
+                A casta é a variedade genética da videira. Portugal é conhecida por suas <strong>castas autóctones</strong> — variedades que se desenvolveram naturalmente em suas terras ao longo de séculos.
+            </p>
+            <p>
+                Exemplos principais:
+            </p>
+            <ul>
+                <li><strong>Touriga Nacional:</strong> a "rainha" de Portugal — taninos estruturados, corpo robusto, ótima guarda</li>
+                <li><strong>Baga:</strong> a "rainha da Bairrada" — acidez viva, aromas de floresta, evolução fascinante</li>
+                <li><strong>Arinto:</strong> branco elegante, acidez mineral, ótimo envelhecimento</li>
+                <li><strong>Alvarinho:</strong> branco aromático, fresco, tradicional do Minho</li>
+                <li><strong>Touriga Franca:</strong> elegância, perfume, estrutura — frequentemente em blends</li>
+            </ul>
+
+            <h3>3. Clima e Produção</h3>
+            <p>
+                O clima determina se a uva alcançará maturação adequada. Portugal beneficia-se de sua posição atlântica: as brisas marinhas trazem umidade e equilíbrio térmico, especialmente nas regiões costeiras.
+            </p>
+            <p>
+                O ciclo da videira segue ritmo natural: brotação na primavera, floração no início do verão, amadurecimento no verão avançado, colheita no outono. Cada fase define a qualidade final da uva.
+            </p>
+
+            <h3>4. Sensorialidade</h3>
+            <p>
+                A degustação profissional segue protocolo: análise visual (cor, brilho, depósitos), análise olfativa (aromas primários, secundários, terciários) e gustativa (acidez, taninos, corpo, persistência, equilíbrio).
+            </p>
+        </div>
+
+        <!-- SEÇÃO 3: OS VINHOS DE PORTUGAL -->
+        <div class="section">
+            <h2>Os Vinhos de Portugal: As 14 Regiões</h2>
+
+            <div class="intro-text">
+                Portugal possui 14 regiões vitivinícolas reconhecidas e 31 Denominações de Origem (DOC). Cada região carrega séculos de tradição e inovação.
+            </div>
+
+            <h3>Regiões do Norte</h3>
+
+            <div class="regions-grid">
+                <div class="region-card">
+                    <h4>Vinho Verde</h4>
+                    <p><strong>Características:</strong> Leve, fresco, levemente espumante</p>
+                    <p><strong>Castas principais:</strong> Alvarinho, Loureiro, Avesso</p>
+                    <p><strong>Perfil:</strong> Acidez elevada, álcool baixo (8-10%), aromas cítricos e florais</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Douro</h4>
+                    <p><strong>Características:</strong> Tintos estruturados, Vinho do Porto, terroir único</p>
+                    <p><strong>Castas principais:</strong> Touriga Nacional, Touriga Franca, Tinta Roriz</p>
+                    <p><strong>Perfil:</strong> Corpo cheio, taninos firmes, envelhecimento longo</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Trás-os-Montes</h4>
+                    <p><strong>Características:</strong> Vinhos rústicos com caráter</p>
+                    <p><strong>Castas principais:</strong> Touriga, Tinta Roriz, varietais locais</p>
+                    <p><strong>Perfil:</strong> Minerais, terrosos, expressivos</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Vinho do Porto</h4>
+                    <p><strong>Características:</strong> Fortificado, complexo, longa guarda</p>
+                    <p><strong>Estilos:</strong> Ruby, Tawny, Vintage, Colheita</p>
+                    <p><strong>Perfil:</strong> Encorpado, doce natural, estrutura tânica elegante</p>
+                </div>
+            </div>
+
+            <h3>Regiões do Centro</h3>
+
+            <div class="regions-grid">
+                <div class="region-card">
+                    <h4>Dão</h4>
+                    <p><strong>Características:</strong> Tintos elegantes, refinados</p>
+                    <p><strong>Castas principais:</strong> Touriga Nacional, Tinta Pinheira, Encruzado</p>
+                    <p><strong>Perfil:</strong> Acidez equilibrada, taninos finos, aromas de floresta</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Bairrada</h4>
+                    <p><strong>Características:</strong> Tintos robustos e nervosos</p>
+                    <p><strong>Castas principais:</strong> Baga (rainha local), Touriga Nacional</p>
+                    <p><strong>Perfil:</strong> Taninos vibrantes, acidez alta, evolução espetacular após 10+ anos</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Beiras</h4>
+                    <p><strong>Características:</strong> Brancas frescas, tintos versáteis</p>
+                    <p><strong>Castas principais:</strong> Encruzado (branco), Touriga Nacional (tinto)</p>
+                    <p><strong>Perfil:</strong> Minerais, equilibrados, acessíveis</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Távora-Varosa</h4>
+                    <p><strong>Características:</strong> Espumantes de qualidade</p>
+                    <p><strong>Castas principais:</strong> Arinto, Cerceal, Chardonnay</p>
+                    <p><strong>Perfil:</strong> Método Tradicional, complexidade, frescura</p>
+                </div>
+            </div>
+
+            <h3>Regiões do Sul e Ilhas</h3>
+
+            <div class="regions-grid">
+                <div class="region-card">
+                    <h4>Alentejo</h4>
+                    <p><strong>Características:</strong> Tintos modernos, frutados</p>
+                    <p><strong>Castas principais:</strong> Aragonês, Trincadeira, Alicante Bouschet</p>
+                    <p><strong>Perfil:</strong> Corpo cheio, fruta madura, calor solar em taça</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Lisboa</h4>
+                    <p><strong>Características:</strong> Diversidade, qualidade crescente</p>
+                    <p><strong>Castas principais:</strong> Castelão, Fernão Pires</p>
+                    <p><strong>Perfil:</strong> Versáteis, fáceis de beber, valor exccelente</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Península de Setúbal</h4>
+                    <p><strong>Características:</strong> Tintos estruturados, Moscatel doce</p>
+                    <p><strong>Castas principais:</strong> Castelão, Moscatel</p>
+                    <p><strong>Perfil:</strong> Elegância, concentração, herança histórica</p>
+                </div>
+
+                <div class="region-card">
+                    <h4>Algarve e Ilhas</h4>
+                    <p><strong>Características:</strong> Inovação e tradição</p>
+                    <p><strong>Estilos:</strong> Madeira (fortificado), Açores (vulcânicos)</p>
+                    <p><strong>Perfil:</strong> Únicos, minerais, terroir distinto</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 4: MASTER EM ENOGRAFIA -->
+        <div class="section page-break">
+            <h2>Master em Enografia dos Vinhos de Portugal</h2>
+            <h3 style="color: #d9b98c; font-size: 20px; margin-top: 10px; margin-bottom: 30px; font-weight: normal;">Formação de Embaixador dos Vinhos de Portugal</h3>
+
+            <div class="intro-text">
+                O Master em Enografia dos Vinhos de Portugal é muito mais que um curso técnico. É uma <strong>formação completa de Embaixador da Cultura Portuguesa</strong>. Você aprenderá todo o universo que circunda o vinho português: desde o terroir e o clima até à história do povo, as tradições, a gastronomia, a enologia e a enografia. Você não será apenas um especialista em vinho — será um representante da riqueza cultural de Portugal.
+            </div>
+
+            <h3>O Que é Ser um Embaixador dos Vinhos de Portugal?</h3>
+            <p>
+                Um embaixador não apenas conhece e vende vinho — ele compreende a história, a cultura e a alma portuguesa por trás de cada garrafa. Ele é capaz de contar histórias que conectam o terroir montanhoso do Douro à tradição dos navegadores, que explicam por que a Baga da Bairrada é tão especial, que relacionam o Alentejo ao calor solar e à generosidade portuguesa.
+            </p>
+            <p>
+                Durante o Master, você viverá uma imersão profunda em Portugal: conhecerá as regiões, seus povos, suas tradições, suas receitas. Você aprenderá que vinho português não é apenas bebida — é história, é cultura, é identidade nacional.
+            </p>
+
+            <h3>Objetivo do Programa</h3>
+            <p>
+                Formar embaixadores profissionais capazes de representar os vinhos de Portugal com autoridade, profundidade e autenticidade. Ao fim do curso, você será capaz de:
+            </p>
+            <ul class="check-list">
+                <li>Compreender a origem, história e características de qualquer vinho português</li>
+                <li>Conectar vinho com gastronomia, tradições e cultura local</li>
+                <li>Avaliar vinhos com metodologia profissional e sensibilidade cultural</li>
+                <li>Comunicar a alma portuguesa através de cada recomendação</li>
+                <li>Construir harmonizações estratégicas entre vinho, prato e contexto cultural</li>
+                <li>Orientar clientes enquanto educador e embaixador, não apenas vendedor</li>
+                <li>Participar em discussões técnicas e culturais de nível profissional</li>
+                <li>Representar Portugal com credibilidade e paixão em qualquer contexto</li>
+            </ul>
+
+            <h3>Estrutura do Curso</h3>
+            <p>
+                O Master é organizado em <strong>6 módulos temáticos</strong>, cada um aprofundando um pilar do conhecimento enográfico:
+            </p>
+
+            <div class="module-list">
+                <div class="module-item">
+                    <span class="module-number">1</span>
+                    <span class="module-title">Portugal Vitivinícola: História, Terroir e Identidade</span>
+                    <div class="module-desc">
+                        História dos vinhos em Portugal (2.000+ anos de tradição vitivinícola), geografia vitivinícola (latitude, longitude, influências atlânticas), classificações oficiais (DOC, IPR, Vinho Regional), e as mais de 250 castas autóctones únicas. Estude o terroir português: solos graníticos, argilosos, vulcânicos. Aprenda como o clima atlântico moldou a identidade do vinho português. Você compreenderá como cada elemento natural se traduz em características sensoriais e culturais.
+                    </div>
+                </div>
+
+                <div class="module-item">
+                    <span class="module-number">2</span>
+                    <span class="module-title">Regiões do Norte: Tradição e Patrimônio</span>
+                    <div class="module-desc">
+                        Aprofundamento em Vinho Verde (frescor do Minho), Douro (Patrimônio da Humanidade, séculos de terraceamento), Vinho do Porto (história e fortificação) e Trás-os-Montes (tradições rústicas). Estude os estilos, as castas locais, as técnicas tradicionais passadas de geração em geração e as inovações modernas. Conheça o povo nortenho, suas festas e seus pratos. Degustações guiadas para reconhecer perfis únicos e narrativas culturais.
+                    </div>
+                </div>
+
+                <div class="module-item">
+                    <span class="module-number">3</span>
+                    <span class="module-title">Regiões do Centro: Elegância e Terroir</span>
+                    <div class="module-desc">
+                        Dão (os vinhos elegantes), Bairrada (a Baga vibrante e o leitão à Bairrada!), Beiras e Távora-Varosa (espumantes refinados). Conheça a cultura local, as receitas tradicionais e como o vinho integral-se à gastronomia regional. Aprenda sobre a evolução histórica de cada região, seus produtores históricos e as novas gerações. Análise profunda de solos, microclimas e evolução dos vinhos ao longo das décadas.
+                    </div>
+                </div>
+
+                <div class="module-item">
+                    <span class="module-number">4</span>
+                    <span class="module-title">Regiões do Sul e Ilhas: Inovação e Caráter</span>
+                    <div class="module-desc">
+                        Alentejo (região em crescimento, generosidade solar), Lisboa (equilíbrio), Península de Setúbal (herança), Algarve, Madeira (fortificados únicos) e Açores (vulcânicos singulares). Estude a mentalidade alentejana, a história marítima, o caráter insular. Conheça os produtores inovadores e os que mantêm tradições centenárias. Inclusão de fortificados únicos e sua relevância na identidade portuguesa.
+                    </div>
+                </div>
+
+                <div class="module-item">
+                    <span class="module-number">5</span>
+                    <span class="module-title">Degustação, Gastronomia e Cultura</span>
+                    <div class="module-desc">
+                        Protocolo profissional de degustação (visual, olfativa, gustativa) com sensibilidade cultural. Harmonização profunda com pratos portugueses tradicionais (bacalhau, arroz, grelhados) e contemporâneos. Construção de uma carta de vinhos que conte histórias. Técnicas para reconhecer qualidade, defeitos e evolução. Aprenda a comunicar não apenas características técnicas, mas narrativas que conectam vinho, prato, região e povo.
+                    </div>
+                </div>
+
+                <div class="module-item">
+                    <span class="module-number">6</span>
+                    <span class="module-title">Ser um Embaixador: Mercado, Oportunidades e Representação</span>
+                    <div class="module-desc">
+                        O vinho português no Brasil e no mundo. Produtores emergentes a acompanhar. Enoturismo como ferramenta educacional. Oportunidades comerciais como embaixador. Estratégias de venda autêntica. Impacto das mudanças climáticas em Portugal. Networking profissional. Como representar Portugal com credibilidade, paixão e conhecimento profundo. Ética e responsabilidade do embaixador cultural.
+                    </div>
+                </div>
+            </div>
+
+            <h3>Formato e Duração</h3>
+
+            <div class="highlight">
+                <h4>Estrutura do Programa</h4>
+                <p><strong>Aulas Online ao Vivo:</strong> Segundas-feiras ou domingos (conforme turma), de março a maio de 2027. Cada aula combina aporte teórico, discussão interativa e preparação sensorial.</p>
+                <p><strong>Material Exclusivo em Plataforma Digital:</strong> Acesso permanente a apostilas atualizadas, vídeos temáticos, fichas de degustação e referências técnicas.</p>
+                <p><strong>Degustações Guiadas:</strong> Avaliações comparativas ao vivo para reconhecer nuances entre vinhos, terroirs e safras.</p>
+                <p><strong>Imersão em Portugal (Opcional):</strong> Junho de 2027 — visitas técnicas a vinícolas tradicionais e modernas, contato direto com enólogos, experiências em caves históricas. Passagens e hospedagem arranjos com agência parceira.</p>
+                <p><strong>Certificação Internacionalmente Reconhecida:</strong> Diploma de conclusão, pin oficial de Master, acesso ao maior acervo de conteúdo vínico de Portugal.</p>
+            </div>
+
+            <h3>Diferencial do Master</h3>
+            <p>
+                Este programa é <strong>único no Brasil</strong> porque é desenvolvido por um sommelier com credenciais internacionais em parceria com produtores e instituições portuguesas de renome. Você não aprende apenas sobre Portugal — você aprende <strong>com Portugal</strong>.
+            </p>
+        </div>
+
+        <!-- SEÇÃO 5: BENEFÍCIOS -->
+        <div class="section">
+            <h2>O Que Você Levará do Master: Tornando-se um Embaixador</h2>
+
+            <h3>Conhecimento Técnico e Cultural Profundo</h3>
+            <p>
+                Domínio completo da geografia, história, castas, técnicas, características sensoriais <strong>e narrativas culturais</strong> dos vinhos portugueses. Você compreenderá não apenas <em>como</em> os vinhos são feitos, mas <em>por que</em> são feitos assim, enraizados na história e identidade portuguesa. Será capaz de conversar em igualdade com produtores, críticos, sommeliers e, mais importante, contar histórias que conectam vinho, povo e tradição.
+            </p>
+
+            <h3>Legitimidade como Embaixador</h3>
+            <p>
+                Você receberá um diploma reconhecido internacionalmente que o qualifica como embaixador legítimo dos vinhos de Portugal. Seu conhecimento será validado por instituições portuguesas renomadas, abrindo portas em hotelaria de luxo, gastronomia fina, importação, varejo especializado, consultoria e educação.
+            </p>
+
+            <h3>Capacidade de Educação e Influência</h3>
+            <p>
+                Mais que vender vinho, você terá ferramentas para <strong>educar</strong> consumidores, clientes e equipes. Poderá ministrar masterclasses, palestras, degustações e treinamentos como especialista. Sua capacidade de explicar e inspirar será sua maior credencial como embaixador cultural.
+            </p>
+
+            <h3>Rede de Contatos Profissional</h3>
+            <p>
+                Conexão direta com outros Master, produtores portugueses, importadores, representantes de Wines of Portugal e profissionais internacionais. Oportunidades de colaboração, negócios e representação oficial.
+            </p>
+
+            <h3>Ferramentas Práticas de Embaixador</h3>
+            <p>
+                Metodologia profissional de degustação, técnicas de harmonização vinho-gastronomia-cultura, estratégias de educação e venda autêntica, knowledge base permanente em plataforma digital, acesso a acervo exclusivo de conteúdo sobre Portugal.
+            </p>
+
+            <h3>Transformação Pessoal e Profissional</h3>
+            <p>
+                Desenvolvimento de paladar refinado, compreensão profunda de uma cultura milenar, capacidade de inspirar outros, satisfação intelectual de dominar um tema complexo, e a honra de representar Portugal com autenticidade e paixão.
+            </p>
+        </div>
+
+        <!-- CTA FINAL -->
+        <div class="cta-box">
+            <h3>Comece Seu Caminho Como Enógrafo</h3>
+            <p>Master em Enografia dos Vinhos de Portugal</p>
+            <p>Turma de Março de 2027 — Vagas Limitadas</p>
+            <p style="margin-top: 20px; font-size: 14px; color: #d9b98c;">Promoção de Lançamento: <strong>R$ 1.000</strong> para os 10 primeiros inscritos ou até 30 de setembro</p>
+            <a href="https://wa.me/5549999702427?text=Olá, quero reservar minha vaga no Master em Enografia dos Vinhos de Portugal." class="cta-button">Reservar Minha Vaga</a>
+            <p style="margin-top: 20px; font-size: 14px;">Ou visite: <strong>omundodosvinhos.com</strong></p>
+        </div>
+
+        <!-- SEÇÃO 6: CONCLUSÃO -->
+        <div class="section">
+            <h2>Conclusão: O Chamado do Embaixador</h2>
+
+            <p>
+                Enografia não é apenas conhecer vinhos — é conectar-se com história, geografia, tradição, povo e identidade. É reconhecer em uma taça de Touriga Nacional os esforços de gerações de viticultores nas encostas do Douro. É harmonizar um Baga com um prato tradicional e compreender a alma da gastronomia portuguesa. É assessorar um cliente e transformá-lo em um amigo que respeita e ama Portugal.
+            </p>
+
+            <p>
+                Um <strong>embaixador dos vinhos de Portugal</strong> não apenas vende — ele educa, inspira e cria pontes culturais. Ele sabe explicar com propriedade, com paixão, com conhecimento profundo. Ele não é simplesmente um especialista técnico — é um guardião da identidade portuguesa, capaz de transmitir a riqueza de séculos de tradição através de cada recomendação.
+            </p>
+
+            <p>
+                Portugal oferece uma escola incomparável: um pequeno país com 2.000+ anos de tradição vitivinícola, 14 regiões climaticamente diversas, mais de 250 castas autóctones únicas, inovação constante e um povo generoso. Não existe lugar melhor para se tornar um verdadeiro embaixador cultural.
+            </p>
+
+            <p>
+                O Master em Enografia dos Vinhos de Portugal é o seu caminho para se tornar esse embaixador. Com orientação de profissionais que dedicam suas vidas à educação vínica, material de qualidade, acesso a especialistas internacionais e conexão direta com produtores portugueses, você estará preparado para representar Portugal com credibilidade, autenticidade e excelência.
+            </p>
+
+            <p>
+                Você não será apenas alguém que conhece vinhos. Você será alguém que sabe explicar Portugal. Essa é a diferença entre um vendedor e um embaixador.
+            </p>
+
+            <p style="margin-top: 40px; font-style: italic; color: #7a1e2e;">
+                <strong>"O vinho é poesia em uma garrafa, mas o embaixador é quem transforma essa poesia em compreensão, em conexão, em transformação." </strong><br>
+                A enografia é a ciência que desvenda a poesia. O Master em Enografia é a formação que faz você um embaixador.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="footer">
+        <p><strong>OMDV — Educação Vínica Oficial ®</strong></p>
+        <p>Desde 2015</p>
+        <p style="margin-top: 15px; font-size: 12px;">www.omundodosvinhos.com · omundodosvinhos.omdv@gmail.com · (49) 9 9970-2427</p>
+        <p style="margin-top: 20px; font-size: 12px; border-top: 1px solid #555; padding-top: 15px;">Criado com dedicação à educação vínica profissional e à promoção dos vinhos de Portugal no Brasil.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
