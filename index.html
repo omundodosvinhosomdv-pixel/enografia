@@ -728,5 +728,71 @@
 }
 </style>
 
+<!-- ===== MEDIÇÃO DE ACESSOS (Google Analytics 4) COM CONSENTIMENTO — LGPD ===== -->
+<style>
+#lgpd-aviso{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#2c0a12;color:#f2e7d8;
+  font-family:Georgia,serif;font-size:14px;line-height:1.5;padding:16px 20px;display:none;
+  box-shadow:0 -2px 14px rgba(0,0,0,.3)}
+#lgpd-aviso .lgpd-wrap{max-width:900px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center}
+#lgpd-aviso p{margin:0;flex:1 1 320px;text-align:left;color:#f2e7d8;font-size:14px}
+#lgpd-aviso button{font-family:Georgia,serif;font-size:14px;padding:9px 20px;border-radius:4px;cursor:pointer;border:1px solid #d9b98c}
+#lgpd-sim{background:#d9b98c;color:#2c0a12;font-weight:bold}
+#lgpd-nao{background:transparent;color:#d9b98c}
+@media (max-width:768px){#lgpd-aviso{font-size:13px;padding:14px}#lgpd-aviso p{text-align:left;font-size:13px}#lgpd-aviso button{flex:1 1 auto}}
+</style>
+
+<div id="lgpd-aviso" role="dialog" aria-label="Aviso de privacidade">
+  <div class="lgpd-wrap">
+    <p>Usamos medição de acessos para entender como este material é lido. Nenhum dado pessoal é coletado. Você pode recusar.</p>
+    <button id="lgpd-sim">Aceitar</button>
+    <button id="lgpd-nao">Recusar</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ID = 'G-RLSRFDE4JF';
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  gtag('js', new Date());
+  gtag('config', ID);
+  var s = document.createElement('script');
+  s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+  document.head.appendChild(s);
+
+  function guardar(v){ try{ localStorage.setItem('lgpd_consent', v); }catch(e){} }
+  function lido(){ try{ return localStorage.getItem('lgpd_consent'); }catch(e){ return null; } }
+
+  var aviso = document.getElementById('lgpd-aviso');
+  var escolha = lido();
+  if (escolha === 'sim') { gtag('consent','update',{analytics_storage:'granted'}); }
+  else if (escolha !== 'nao') { aviso.style.display = 'block'; }
+
+  document.getElementById('lgpd-sim').onclick = function(){
+    gtag('consent','update',{analytics_storage:'granted'});
+    guardar('sim'); aviso.style.display='none';
+  };
+  document.getElementById('lgpd-nao').onclick = function(){
+    guardar('nao'); aviso.style.display='none';
+  };
+
+  /* Evento: leu até o fim */
+  var marcou = false;
+  window.addEventListener('scroll', function(){
+    if (marcou) return;
+    var h = document.documentElement;
+    var pct = (h.scrollTop + window.innerHeight) / h.scrollHeight;
+    if (pct > 0.9) { marcou = true; gtag('event','leu_ate_o_fim'); }
+  }, {passive:true});
+
+  /* Evento: clique no botão de WhatsApp */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+    if (a) { gtag('event','clique_whatsapp'); }
+  });
+})();
+</script>
+
 </body>
 </html>
